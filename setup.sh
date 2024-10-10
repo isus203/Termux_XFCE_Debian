@@ -200,12 +200,11 @@ cp $HOME/Desktop/App-Installer.desktop $HOME/../usr/share/applications
 
 setup_termux_x11() {
 # Install Termux-X11
+echo " Install Termux-x11-nightly"
+pkg install termux-x11-nightly
 
-wget https://github.com/termux/termux-x11/releases/download/nightly/termux-x11-nightly-1.03.00-0-all.deb
-dpkg -i termux-x11-nightly-1.03.00-0-all.deb
-rm termux-x11-nightly-1.03.00-0-all.deb
 #apt-mark hold termux-x11-nightly
-
+echo " Install Termux-x11 apk"
 wget https://github.com/termux/termux-x11/releases/download/nightly/app-arm64-v8a-debug.apk
 mv app-arm64-v8a-debug.apk $HOME/storage/downloads/
 termux-open $HOME/storage/downloads/app-arm64-v8a-debug.apk
@@ -293,41 +292,39 @@ mv peakpx.jpg $HOME/../usr/share/backgrounds/xfce/
 mv dark_waves.png $HOME/../usr/share/backgrounds/xfce/
 
 #Install WhiteSur-Dark Theme
-wget https://github.com/vinceliuice/WhiteSur-gtk-theme/archive/refs/tags/2023-04-26.zip
-unzip 2023-04-26.zip
-tar -xf WhiteSur-gtk-theme-2023-04-26/release/WhiteSur-Dark-44-0.tar.xz
+wget https://github.com/vinceliuice/WhiteSur-gtk-theme/archive/refs/tags/2024.09.02.zip
+unzip 2024.09.02.zip
+tar -xf WhiteSur-gtk-theme-2024.09.02/release/WhiteSur-Dark.tar.xz
 mv WhiteSur-Dark/ $HOME/../usr/share/themes/
 rm -rf WhiteSur*
-rm 2023-04-26.zip
+rm 2024.09.02.zip
 
 #Install Fluent Cursor Icon Theme
-wget https://github.com/vinceliuice/Fluent-icon-theme/archive/refs/tags/2023-02-01.zip
-unzip 2023-02-01.zip
-mv Fluent-icon-theme-2023-02-01/cursors/dist $HOME/../usr/share/icons/ 
-mv Fluent-icon-theme-2023-02-01/cursors/dist-dark $HOME/../usr/share/icons/
+wget https://github.com/vinceliuice/Fluent-icon-theme/archive/refs/tags/2024-02-25.zip
+unzip 2024-02-25.zip
+mv Fluent-icon-theme-2024-02-25/cursors/dist $HOME/../usr/share/icons/ 
+mv Fluent-icon-theme-2024-02-25/cursors/dist-dark $HOME/../usr/share/icons/
 cp -r $HOME/../usr/share/icons/dist-dark $HOME/../usr/var/lib/proot-distro/installed-rootfs/debian/usr/share/icons/dist-dark
 rm -rf $HOME//Fluent*
-rm 2023-02-01.zip
+rm 2024-02-25.zip
 
 cat <<'EOF' > $HOME/../usr/var/lib/proot-distro/installed-rootfs/debian/home/$username/.Xresources
 Xcursor.theme: dist-dark
 EOF
 
 #Setup Fonts
-wget https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip
+wget https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
 mkdir .fonts 
 mkdir $HOME/../usr/var/lib/proot-distro/installed-rootfs/debian/home/$username/.fonts/
-unzip CascadiaCode-2111.01.zip
+unzip CascadiaCode-2404.23.zip
 mv otf/static/* .fonts/ && rm -rf otf
 mv ttf/* .fonts/ && rm -rf ttf/
-rm -rf woff2/ && rm -rf CascadiaCode-2111.01.zip
+rm -rf woff2/ && rm -rf CascadiaCode-2404.23.zip
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
 unzip Meslo.zip
 mv *.ttf .fonts/
 rm Meslo.zip
-rm LICENSE.txt
-rm readme.md
 
 wget https://github.com/phoenixbyrd/Termux_XFCE/raw/main/NotoColorEmoji-Regular.ttf
 mv NotoColorEmoji-Regular.ttf .fonts
